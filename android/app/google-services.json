@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682707606749",
+    "firebase_url": "https://provelopdev.firebaseio.com",
+    "project_id": "provelopdev",
+    "storage_bucket": "provelopdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682707606749:android:e72c55d17a582967d64f34",
+        "android_client_info": {
+          "package_name": "com.provelop.provelop_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682707606749-jh1jmh00m5bvrhn9agpndec17qpin8pp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.provelop.provelop_app",
+            "certificate_hash": "ae162a56db8aa940713e7922ef8502f61ab628d3"
+          }
+        },
+        {
+          "client_id": "682707606749-ef6s35cp2ffk1t0spqfa8g43etrsdcj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB32f7M_SWbujrdpAOkXm-mzL0LC3icfJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682707606749-ef6s35cp2ffk1t0spqfa8g43etrsdcj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
