@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provelop_app/User/ui/screens/user_location.dart';
 
 class SignUpControls extends StatefulWidget {
   final VoidCallback onSignUp;
@@ -76,7 +77,15 @@ class _SignUpControls extends State<SignUpControls>{
                 usernameControl,
                 mailControl,
                 passwordControl,
-                loginButton
+                loginButton,
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 30.0,
+                  ),
+                  height: 200.0,
+
+                  child: MapLocation(),
+                ),
               ],
             )
           ],
