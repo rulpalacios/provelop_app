@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/User/repository/auth_repository.dart';
+import 'package:provelop_app/User/repository/cloud_firestore_repository.dart';
 
 class UserBloc implements Bloc {
   final _auth_repository = AuthRepository();
@@ -26,7 +28,10 @@ class UserBloc implements Bloc {
   Future<FirebaseUser> signUp(String email, String password, String username){
     return _auth_repository.signUp(email, password, username);
   }
+  // SignUp user in DB
+  final _cloudFirestoreRepository = CloudFirestoreRepository();
 
+  void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
   // Reset password
   resetPassword(String email){
     return _auth_repository.resetPassword(email);
