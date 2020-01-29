@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:provelop_app/Event/model/event.dart';
+import 'package:provelop_app/User/bloc/bloc_user.dart';
+import 'package:provelop_app/widgets/button_purple.dart';
 import 'package:provelop_app/widgets/gradient_back.dart';
 import 'package:provelop_app/widgets/text_input.dart';
 import 'package:provelop_app/widgets/title_header.dart';
@@ -12,6 +16,7 @@ class AddEventScreen extends StatefulWidget{
 class _AddEventScreen extends State<AddEventScreen>{
   @override
   Widget build(BuildContext context){
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     final _controllerTitleEvent = TextEditingController();
 
@@ -58,10 +63,27 @@ class _AddEventScreen extends State<AddEventScreen>{
                     maxLines: 1,
                     controller: _controllerTitleEvent,
                   ),
+                ),
+                Container(
+                  width: 70.0,
+                  child: ButtonPurple(
+                    buttonText: 'Add Event',
+                    onPressed: () {
+                      //Insertar objeto evento
+                      userBloc.updateEventData(Event(
+                        name: _controllerTitleEvent.text,
+                        description: 'Evento en Provelop',
+                        capacity: 20,
+                      )).whenComplete((){
+                        print('creado');
+                        Navigator.pop(context);
+                      });
+                    },
+                  ),
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
