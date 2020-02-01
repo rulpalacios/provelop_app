@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/Place/model/place.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place_info.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place.dart';
 
 class ProfilePlace extends StatelessWidget {
 
-  String image;
-  Place place;
+//  String image;
+  Event event;
 
-  ProfilePlace(this.image, this.place);
+  ProfilePlace(this.event);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class ProfilePlace extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(image)
+              image: AssetImage('assets/img/river.jpeg')
           ),
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: Colors.red,
@@ -40,7 +41,7 @@ class ProfilePlace extends StatelessWidget {
       alignment: Alignment(0.0, 0.8),
       children: <Widget>[
         photoCard,
-        ProfilePlaceInfo(place)
+        ProfilePlaceInfo(event)
       ],
     );
   }

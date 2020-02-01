@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/Place/model/place.dart';
 import 'package:provelop_app/widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
 
-  Place place;
+  Event event;
 
-  ProfilePlaceInfo(this.place);
+  ProfilePlaceInfo(this.event);
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     final place = Text(
-      this.place.name,
+      this.event.name,
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 20.0,
@@ -29,7 +30,7 @@ class ProfilePlaceInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                this.place.where,
+                this.event.name,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -38,7 +39,7 @@ class ProfilePlaceInfo extends StatelessWidget {
                 ),
               ),
               Text(
-                this.place.type,
+                this.event.name,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -51,7 +52,7 @@ class ProfilePlaceInfo extends StatelessWidget {
     );
 
     final steps = Text(
-      'Steps ${this.place.steps}',
+      'Steps ${this.event.name}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,

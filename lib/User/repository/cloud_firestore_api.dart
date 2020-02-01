@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/Event/model/event.dart';
+import 'package:provelop_app/User/ui/widgets/profile_place.dart';
 
 class CloudFirestoreAPI{
   final String users = 'users';
@@ -30,9 +31,35 @@ class CloudFirestoreAPI{
         'name': event.name,
         'description': 'Evento Provelop',
         'capacity': 25,
-        'userOwner': "${users}/${user.uid}"
+//        'userOwner': "${users}/${user.uid}"
+        'userOwner': _db.document("${users}/${user.uid}")
+      }).then((DocumentReference docReference){
+        docReference.get().then((DocumentSnapshot snapshot){
+          DocumentReference userReference = _db.collection(users).document(user.uid);
+          userReference.updateData({
+            'myEvents': FieldValue.arrayUnion([_db.document("${events}/${snapshot.documentID}")])
+          });
+        });
       });
     });
   }
+
+  List<ProfilePlace> buildEvents(List<DocumentSnapshot> eventsListSnapshot){
+    List<ProfilePlace> eventList = List<ProfilePlace>();
+
+    eventsListSnapshot.forEach((event){
+      eventList.add(ProfilePlace(
+          Event(
+              name: event.data['name'],
+              description: event.data['description'],
+              capacity: event.data['capacity']
+//              userOwner: event.data['userOwner']
+          )
+      ));
+    });
+
+    return eventList;
+  }
+
 
 }

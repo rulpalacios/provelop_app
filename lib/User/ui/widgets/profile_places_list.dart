@@ -18,8 +18,8 @@ class ProfilePlacesList extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          ProfilePlace('assets/img/river.jpeg', place),
-          ProfilePlace('assets/img/mountain.jpeg', place2),
+//          ProfilePlace('assets/img/river.jpeg', place),
+//          ProfilePlace('assets/img/mountain.jpeg', place2),
         ],
       ),
     );
