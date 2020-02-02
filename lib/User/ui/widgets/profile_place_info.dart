@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/Place/model/place.dart';
 import 'package:provelop_app/widgets/floating_action_button_green.dart';
+import 'package:provelop_app/Place/ui/screens/home_trips.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
 
@@ -37,22 +38,34 @@ class ProfilePlaceInfo extends StatelessWidget {
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold
                 ),
-              ),
-              Text(
-                this.event.name,
-                style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 0.4),
-                    fontFamily: 'Lato',
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold
-                ),
               )
             ]
         )
     );
 
+    final seats = RichText(text: TextSpan(
+      style: TextStyle(
+        fontFamily: 'Lato',
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.amber
+      ),
+      children: [
+        WidgetSpan(
+          child: Icon(
+            Icons.event_seat, 
+            size: 20.0,
+            color: Colors.amber,
+          )
+        ),
+        TextSpan(text: '${this.event.capacity}')
+      ]
+    ));
     final steps = Text(
-      'Steps ${this.event.name}',
+      //  child: Icon(
+      //   Icons.favorite_border
+      // ),
+      '${this.event.capacity}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,
@@ -80,8 +93,8 @@ class ProfilePlaceInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               place,
-              placeInfo,
-              steps
+              // placeInfo,
+              seats
             ],
           )
       ),
@@ -91,7 +104,16 @@ class ProfilePlaceInfo extends StatelessWidget {
       alignment: Alignment(0.8, 1.25),
       children: <Widget>[
         card,
-        FloatingActionButtonGreen()
+        FloatingActionButtonGreen(
+          onViewEvent: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => HomeTrips(event: this.event)
+                )
+            );
+          },
+        )
       ],
     );
   }

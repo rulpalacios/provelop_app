@@ -29,8 +29,8 @@ class CloudFirestoreAPI{
     await _auth.currentUser().then((FirebaseUser user) {
       reference.add({
         'name': event.name,
-        'description': 'Evento Provelop',
-        'capacity': 25,
+        'description': event.description,
+        'capacity': event.capacity,
 //        'userOwner': "${users}/${user.uid}"
         'userOwner': _db.document("${users}/${user.uid}")
       }).then((DocumentReference docReference){

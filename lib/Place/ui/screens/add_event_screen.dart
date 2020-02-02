@@ -19,6 +19,8 @@ class _AddEventScreen extends State<AddEventScreen>{
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     final _controllerTitleEvent = TextEditingController();
+    final _controllerSeatsEvent = TextEditingController();
+    final _controllerDescriptionEvent = TextEditingController();
 
     return Scaffold(
       body: Stack(
@@ -65,6 +67,24 @@ class _AddEventScreen extends State<AddEventScreen>{
                   ),
                 ),
                 Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  child: TextInput(
+                    hintText: 'Asientos',
+                    inputType: null,
+                    maxLines: 1,
+                    controller: _controllerSeatsEvent,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  child: TextInput(
+                    hintText: 'Descripción',
+                    inputType: null,
+                    maxLines: 5,
+                    controller: _controllerDescriptionEvent,
+                  ),
+                ),
+                Container(
                   width: 70.0,
                   child: ButtonPurple(
                     buttonText: 'Add Event',
@@ -72,8 +92,8 @@ class _AddEventScreen extends State<AddEventScreen>{
                       //Insertar objeto evento
                       userBloc.updateEventData(Event(
                         name: _controllerTitleEvent.text,
-                        description: 'Evento en Provelop',
-                        capacity: 20,
+                        description: _controllerDescriptionEvent.text,
+                        capacity: int.parse(_controllerSeatsEvent.text),
                       )).whenComplete((){
                         print('creado');
                         Navigator.pop(context);

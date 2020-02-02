@@ -3,18 +3,21 @@ import 'package:provelop_app/widgets/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
 
-  String namePlace;
-  int stars;
-  String descriptionPlace;
+  String name;
+  String description;
+  int seats;
 
-  DescriptionPlace(this.namePlace, this.stars, this.descriptionPlace);
-
-
-
+  DescriptionPlace({
+    Key key,
+    this.name,
+    this.description,
+    this.seats
+  });
+  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
+print(this.seats);
     final star_half = Container (
       margin: EdgeInsets.only(
           top: 353.0,
@@ -51,17 +54,15 @@ class DescriptionPlace extends StatelessWidget {
       ),
     );
 
-    final title_stars = Row (
-      children: <Widget>[
-        Container (
+    final title = Container (
           margin: EdgeInsets.only(
-            top: 350.0,
+            top: 150.0,
             left: 20.0,
             right: 20.0
           ),
 
           child: Text(
-            namePlace,
+            this.name,
             style: TextStyle(
               fontFamily: "Lato",
               fontSize: 30.0,
@@ -70,23 +71,36 @@ class DescriptionPlace extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
 
+    );
+    final features = Container(
+        margin: EdgeInsets.only(
+            top: 10.0,
+            left: 20.0,
+            right: 20.0
         ),
-
-        Row(
-          children: <Widget>[
-            star,
-            star,
-            star,
-            star,
-            star_half
-          ],
-        )
-
-
-      ],
+      child: RichText(
+          text: TextSpan(
+              style: TextStyle(
+                fontFamily: 'Lato',
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.amber
+              ),
+          children: [
+            WidgetSpan(
+              child: Icon(
+                Icons.event_seat, 
+                size: 30.0,
+                color: Colors.amber,
+              )
+            ),
+            TextSpan(text: '${this.seats}')
+          ]
+        ) 
+      )
     );
 
-    final description = Container(
+    final descriptionW = Container(
       margin: new EdgeInsets.only(
           top: 20.0,
           left: 20.0,
@@ -94,7 +108,7 @@ class DescriptionPlace extends StatelessWidget {
 
       ),
       child: new Text(
-        descriptionPlace,
+        this.description,
         style: const TextStyle(
             fontFamily: "Lato",
             fontSize: 16.0,
@@ -108,9 +122,10 @@ class DescriptionPlace extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title_stars,
-        description,
-        ButtonPurple(buttonText: "Navigate", onPressed: (){})
+        title,
+        features,
+        descriptionW,
+        ButtonPurple(buttonText: "Conseguir lugares", onPressed: (){})
       ],
     );
 

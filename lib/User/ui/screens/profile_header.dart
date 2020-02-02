@@ -45,8 +45,6 @@ class ProfileHeader extends StatelessWidget {
         ),
       );
     } else {
-      print(snapshot.data.uid);
-      print("ejele");
       user = User(uid: snapshot.data.uid, name: snapshot.data.displayName, email: snapshot.data.email, photoURL: snapshot.data.photoUrl);
       final title = Text(
         'Profile',
