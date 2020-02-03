@@ -10,6 +10,7 @@ class CloudFirestoreAPI{
 
   final Firestore _db = Firestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   void updateUserData(User user) async {
     DocumentReference reference = _db.collection(users).document(user.uid);
 
@@ -21,6 +22,12 @@ class CloudFirestoreAPI{
       'myEvents': user.myEvents,
       'lastSignIn': DateTime.now()
     }, merge: true);
+  }
+
+  Future<dynamic> getUser(DocumentReference user) async{
+    DocumentSnapshot userRef = await user.get();
+
+    return userRef;
   }
 
   Future<void> updateEventData(Event event) async {
@@ -52,8 +59,8 @@ class CloudFirestoreAPI{
           Event(
               name: event.data['name'],
               description: event.data['description'],
-              capacity: event.data['capacity']
-//              userOwner: event.data['userOwner']
+              capacity: event.data['capacity'],
+              userOwnerRef: event.data['userOwner']
           )
       ));
     });

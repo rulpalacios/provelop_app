@@ -10,6 +10,8 @@ class CloudFirestoreRepository{
 
   List<ProfilePlace> buildEvents(List<DocumentSnapshot> eventsListSnapshot) => _cloudFirestoreAPI.buildEvents(eventsListSnapshot);
 
+  Future<dynamic> getUser(DocumentReference userRef) => _cloudFirestoreAPI.getUser(userRef);
+
   void updateUserDataFirestore(User user) => _cloudFirestoreAPI.updateUserData(user);
 
   Future<void> updateEventData(Event event) => _cloudFirestoreAPI.updateEventData(event);

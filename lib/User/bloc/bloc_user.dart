@@ -15,6 +15,7 @@ class UserBloc implements Bloc {
   Stream<QuerySnapshot> get eventsStream => eventsListStream;
   List<ProfilePlace> buildEvents(List<DocumentSnapshot> eventsListSnapshot) => _cloudFirestoreRepository.buildEvents(eventsListSnapshot);
 
+  Future<dynamic> getUser(DocumentReference userRef) => _cloudFirestoreRepository.getUser(userRef);
   // Flujo de datos - Stream
   // Stream - Firebase
   Stream<FirebaseUser> streamFirebase = FirebaseAuth.instance.onAuthStateChanged;

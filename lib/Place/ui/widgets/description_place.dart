@@ -1,23 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:provelop_app/User/bloc/bloc_user.dart';
+import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/widgets/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
-
+//  User ownerUser;
+  UserBloc userBloc;
   String name;
   String description;
   int seats;
+  DocumentReference ownerRef;
 
   DescriptionPlace({
     Key key,
     this.name,
     this.description,
-    this.seats
+    this.seats,
+    this.ownerRef
   });
   
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of<UserBloc>(context);
     // TODO: implement build
-print(this.seats);
+//    print(this.ownerUser.name);
     final star_half = Container (
       margin: EdgeInsets.only(
           top: 353.0,
@@ -72,32 +80,63 @@ print(this.seats);
           ),
 
     );
+
     final features = Container(
         margin: EdgeInsets.only(
             top: 10.0,
             left: 20.0,
             right: 20.0
         ),
-      child: RichText(
-          text: TextSpan(
+      child: Row(
+        children: <Widget>[
+          RichText(
+            text: TextSpan(
               style: TextStyle(
-                fontFamily: 'Lato',
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.amber
+                  fontFamily: 'Lato',
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber
               ),
-          children: [
-            WidgetSpan(
-              child: Icon(
-                Icons.event_seat, 
-                size: 30.0,
-                color: Colors.amber,
-              )
-            ),
-            TextSpan(text: '${this.seats}')
-          ]
-        ) 
-      )
+              children: [
+                WidgetSpan(
+                  child: Icon(
+                    Icons.event_seat,
+                    size: 30.0,
+                    color: Colors.amber,
+                  )
+              ),
+              TextSpan(text: '${this.seats}')
+              ]
+            )
+          ),
+          FutureBuilder(
+            future: userBloc.getUser(this.ownerRef),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> user){
+              return Container(
+                margin: EdgeInsets.only(
+                    left: 20.0,
+                ),
+                child: Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(user.data['photoURL'] != null ? user.data['photoURL'] : ""),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 10.0,
+                      ),
+                      child: Text(user.data['name']),
+                    )
+
+                  ],
+                ),
+//              child:
+              );
+            },
+          )
+
+        ],
+      ),
     );
 
     final descriptionW = Container(
