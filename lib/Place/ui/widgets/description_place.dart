@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:provelop_app/User/bloc/bloc_user.dart';
 import 'package:provelop_app/User/model/user.dart';
+import 'package:provelop_app/User/ui/screens/creator_profile.dart';
 import 'package:provelop_app/widgets/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
@@ -125,7 +126,25 @@ class DescriptionPlace extends StatelessWidget {
                       margin: EdgeInsets.only(
                         left: 10.0,
                       ),
-                      child: Text(user.data['name']),
+                      child: InkWell(
+                        child: Text(user.data['name']),
+                        onTap: (){
+//                          Navigator.push(
+//                              context,
+//                              MaterialPageRoute(
+//                                  builder: (BuildContext context) => HomeTrips(event: this.event)
+//                              )
+//                          );
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (BuildContext context) => CreatorProfile(
+                              username: user.data['name'],
+                              photoURL: user.data['photoURL'],
+                            )
+                          ));
+                          print("enviando a profile");
+                        },
+                      ),
+//                      child: Text(user.data['name']),
                     )
 
                   ],

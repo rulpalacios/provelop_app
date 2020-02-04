@@ -106,8 +106,6 @@ class ProfilePlaceInfo extends StatelessWidget {
         card,
         FloatingActionButtonGreen(
           onViewEvent: (){
-            print("apreado");
-            print(this.event.userOwner);
             Navigator.push(
                 context,
                 MaterialPageRoute(
