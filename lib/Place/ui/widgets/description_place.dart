@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:provelop_app/Place/ui/widgets/location_map.dart';
 import 'package:provelop_app/User/bloc/bloc_user.dart';
-import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/User/ui/screens/creator_profile.dart';
 import 'package:provelop_app/widgets/button_purple.dart';
+import 'package:map_launcher/map_launcher.dart';
 
 class DescriptionPlace extends StatelessWidget {
 //  User ownerUser;
@@ -177,12 +178,94 @@ class DescriptionPlace extends StatelessWidget {
       ),
     );
 
+    openMapsSheet(context) async {
+      try {
+        final title = "Workosfera";
+        final description = "Co-Workin Place";
+        final coords = Coords(19.0421108, -98.1949433);
+        final availableMaps = await MapLauncher.installedMaps;
+
+        showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return SafeArea(
+              child: SingleChildScrollView(
+                  child: Container(
+                      child: Wrap(
+                          children: <Widget>[
+                            for (var map in availableMaps)
+                              ListTile(
+                                onTap: () => map.showMarker(
+                                  coords: coords,
+                                  title: title,
+                                  description: description,
+                                ),
+                              title: Text(map.mapName),
+                              leading: Image(
+                                image: map.icon,
+                                height: 30.0,
+                                width: 30.0,
+                              ),
+                            ),
+                          ],
+                      ),
+                  ),
+              ),
+            );
+          },
+        );
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    final openMaps = Container(
+      child: Center(child: Builder(
+        builder: (context) {
+          return MaterialButton(
+            onPressed: () => openMapsSheet(context),
+            child: Text('Llegar con'),
+          );
+        },
+      )),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         title,
         features,
         descriptionW,
+        Container(
+          margin: EdgeInsets.only(
+            top: 30.0,
+          ),
+          height: 200.0,
+
+          child: Stack(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                    '¿Cómo llegar?',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontFamily: "Lato",
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                    ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  top: 50.0,
+                ),
+                child: LocationMap()
+              )
+            ],
+          ),
+        ),
+        openMaps,
         ButtonPurple(buttonText: "Conseguir lugares", onPressed: (){})
       ],
     );

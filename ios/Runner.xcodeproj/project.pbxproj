@@ -18,6 +18,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		C44D5DE323EB94140042B0D0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44D5DE223EB94140042B0D0 /* Accelerate.framework */; };
 		C4D855FC23D13B40007610E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4D855FB23D13B40007610E6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1C1E7AA61DB8F564209D017 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		C44D5DE223EB94140042B0D0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C4D855FB23D13B40007610E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */,
+				C44D5DE323EB94140042B0D0 /* Accelerate.framework in Frameworks */,
 				3B80C3941E831B6300D905FE /* App.framework in Frameworks */,
 				3CC37882E8DB001D61A79EAB /* Pods_Runner.framework in Frameworks */,
 			);
@@ -76,6 +79,7 @@
 		938E92D665A23BEA704E1CFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C44D5DE223EB94140042B0D0 /* Accelerate.framework */,
 				058E4D1A917849AC17F5ED0C /* Pods_Runner.framework */,
 			);
 			name = Frameworks;

@@ -30,6 +30,14 @@
 
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+	    <!-- Maps Section -->
+	    <string>comgooglemaps</string>
+        <string>baidumap</string>
+        <string>iosamap</string>
+        <string>waze</string>
+        <string>yandexmaps</string>
+        <string>yandexnavi</string>
+        <!-- End Maps Section -->
 		<string>fbapi</string>
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>

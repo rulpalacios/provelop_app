@@ -92,7 +92,14 @@ class _SignInScreen extends State<SignInScreen>{
               GradientButton(text: "Login with Facebook",
                 onPressed: (){
                   userBloc.signOut();
-                  userBloc.signInWithFacebook().then((FirebaseUser user) => print("El usuario es ${user.displayName}"));
+                  userBloc.signInWithFacebook().then((FirebaseUser user){
+                    userBloc.updateUserData(User(
+                        uid: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoUrl
+                    ));
+                  });
                 },
                 width: 300.0,
                 height: 50.0,

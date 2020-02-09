@@ -20,8 +20,9 @@ class FirebaseAuthAPI {
   }
 
   Future<FirebaseUser> facebookSignIn() async {
-    final result = await facebookLogin.logInWithReadPermissions(['email','public_profile']);
-    // final result = await facebookLogin.logIn(['email']);
+//    final result = await facebookLogin.logInWithReadPermissions(['email']);
+
+     final result = await facebookLogin.logIn(['email']);
     // facebookLogin.loginBehavior = FacebookLoginBehavior.webViewOnly;
     switch(result.status){
       case FacebookLoginStatus.loggedIn:
