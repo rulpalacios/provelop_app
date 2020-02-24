@@ -6,9 +6,6 @@ import 'package:provelop_app/User/bloc/bloc_user.dart';
 class EventList extends StatelessWidget {
   UserBloc userBloc;
 
-  Place place = new Place('Aprende italiano, aleman o frances', 'Plaza Comercial Solesta', '', 'Sat, Jan 11 - 4:00PM');
-  Place place2 = new Place('1er Simposium Internacional', 'Hilton Garden Inn Puebla', '', 'Fri, Jan 24 - 4:00PM');
-
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of<UserBloc>(context);

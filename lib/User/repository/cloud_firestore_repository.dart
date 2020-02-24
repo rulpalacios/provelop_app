@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place.dart';
+import 'package:provelop_app/Ticket/model/ticket.dart';
 import 'cloud_firestore_api.dart';
 
 class CloudFirestoreRepository{
@@ -16,4 +17,5 @@ class CloudFirestoreRepository{
 
   Future<void> updateEventData(Event event) => _cloudFirestoreAPI.updateEventData(event);
 
+  Future<void> updateTicketData(Ticket ticket) => _cloudFirestoreAPI.updateTicketData(ticket);
 }

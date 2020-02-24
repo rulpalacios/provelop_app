@@ -5,6 +5,7 @@ import 'package:provelop_app/Place/ui/screens/home_trips.dart';
 import 'package:provelop_app/User/bloc/bloc_user.dart';
 import 'package:provelop_app/User/ui/screens/profile_trips.dart';
 import 'package:provelop_app/Event/ui/screens/events_home.dart';
+import 'package:provelop_app/Ticket/ui/screens/tickets.dart';
 
 class PlatziTripsCupertino extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class PlatziTripsCupertino extends StatelessWidget {
                   title: Text("")
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.search, color: Colors.indigo),
+                  icon: Icon(Icons.local_activity, color: Colors.indigo),
                   title: Text("")
               ),
               BottomNavigationBarItem(
@@ -38,7 +39,7 @@ class PlatziTripsCupertino extends StatelessWidget {
               break;
             case 1:
               return CupertinoTabView(
-                builder: (BuildContext context) => HomeTrips(),
+                builder: (BuildContext context) => Tickets(),
               );
               break;
             case 2:

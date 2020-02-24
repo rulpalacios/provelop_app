@@ -3,10 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place.dart';
+import 'package:provelop_app/Ticket/model/ticket.dart';
 
 class CloudFirestoreAPI{
   final String users = 'users';
   final String events = 'events';
+  final String tickets = 'tickets';
 
   final Firestore _db = Firestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -28,6 +30,24 @@ class CloudFirestoreAPI{
     DocumentSnapshot userRef = await user.get();
 
     return userRef;
+  }
+
+  Future<void> updateTicketData(Ticket ticket) async {
+    CollectionReference reference = _db.collection(tickets);
+
+    await _auth.currentUser().then((FirebaseUser user) {
+      reference.add({
+        'name': ticket.name,
+        'userOwner': _db.document("${users}/${user.uid}")
+      }).then((DocumentReference docReference){
+        docReference.get().then((DocumentSnapshot snapshot){
+          DocumentReference userReference = _db.collection(users).document(user.uid);
+          userReference.updateData({
+            'myTickets': FieldValue.arrayUnion([_db.document("${tickets}/${snapshot.documentID}")])
+          });
+        });
+      });
+    });
   }
 
   Future<void> updateEventData(Event event) async {

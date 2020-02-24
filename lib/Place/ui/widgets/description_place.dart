@@ -6,6 +6,7 @@ import 'package:provelop_app/User/bloc/bloc_user.dart';
 import 'package:provelop_app/User/ui/screens/creator_profile.dart';
 import 'package:provelop_app/widgets/button_purple.dart';
 import 'package:map_launcher/map_launcher.dart';
+import 'package:provelop_app/Ticket/model/ticket.dart';
 
 class DescriptionPlace extends StatelessWidget {
 //  User ownerUser;
@@ -27,42 +28,6 @@ class DescriptionPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of<UserBloc>(context);
     // TODO: implement build
-//    print(this.ownerUser.name);
-    final star_half = Container (
-      margin: EdgeInsets.only(
-          top: 353.0,
-          right: 3.0
-      ),
-
-      child: Icon(
-        Icons.star_half,
-        color:  Color(0xFFf2C611),
-      ),
-    );
-
-    final star_border = Container (
-      margin: EdgeInsets.only(
-          top: 353.0,
-          right: 3.0
-      ),
-
-      child: Icon(
-        Icons.star_border,
-        color:  Color(0xFFf2C611),
-      ),
-    );
-
-    final star = Container (
-      margin: EdgeInsets.only(
-        top: 353.0,
-        right: 3.0
-      ),
-
-      child: Icon(
-        Icons.star,
-        color:  Color(0xFFf2C611),
-      ),
-    );
 
     final title = Container (
           margin: EdgeInsets.only(
@@ -130,31 +95,20 @@ class DescriptionPlace extends StatelessWidget {
                       child: InkWell(
                         child: Text(user.data['name']),
                         onTap: (){
-//                          Navigator.push(
-//                              context,
-//                              MaterialPageRoute(
-//                                  builder: (BuildContext context) => HomeTrips(event: this.event)
-//                              )
-//                          );
                           Navigator.push(context, MaterialPageRoute(
                             builder: (BuildContext context) => CreatorProfile(
                               username: user.data['name'],
                               photoURL: user.data['photoURL'],
                             )
                           ));
-                          print("enviando a profile");
-                        },
+                         },
                       ),
-//                      child: Text(user.data['name']),
                     )
-
                   ],
                 ),
-//              child:
-              );
+             );
             },
           )
-
         ],
       ),
     );
@@ -266,7 +220,12 @@ class DescriptionPlace extends StatelessWidget {
           ),
         ),
         openMaps,
-        ButtonPurple(buttonText: "Conseguir lugares", onPressed: (){})
+        ButtonPurple(buttonText: "Conseguir lugares", onPressed: (){
+          userBloc.updateTicketData(Ticket(
+            name: this.name,
+            userOwnerRef: this.ownerRef
+          ));
+        })
       ],
     );
 

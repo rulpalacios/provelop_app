@@ -7,6 +7,7 @@ import 'package:provelop_app/User/repository/auth_repository.dart';
 import 'package:provelop_app/User/repository/cloud_firestore_api.dart';
 import 'package:provelop_app/User/repository/cloud_firestore_repository.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place.dart';
+import 'package:provelop_app/Ticket/model/ticket.dart';
 
 class UserBloc implements Bloc {
   final _auth_repository = AuthRepository();
@@ -40,11 +41,12 @@ class UserBloc implements Bloc {
   }
   // SignUp user in DB
   final _cloudFirestoreRepository = CloudFirestoreRepository();
-
+// Update UserData
   void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
-
+// UpdateEventData
   Future<void> updateEventData(Event event) => _cloudFirestoreRepository.updateEventData(event);
-
+// Update TicketData
+  Future<void> updateTicketData(Ticket ticket) => _cloudFirestoreRepository.updateTicketData(ticket);
   // Reset password
   resetPassword(String email){
     return _auth_repository.resetPassword(email);
