@@ -4,6 +4,7 @@ import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place.dart';
 import 'package:provelop_app/Ticket/model/ticket.dart';
+import 'package:provelop_app/Ticket/ui/widgets/ticket_card.dart';
 
 class CloudFirestoreAPI{
   final String users = 'users';
@@ -69,6 +70,21 @@ class CloudFirestoreAPI{
         });
       });
     });
+  }
+
+  List<TicketCard> buildTickets(List<DocumentSnapshot> ticketsListSnapshot){
+    List<TicketCard> ticketsList = List<TicketCard>();
+
+    ticketsListSnapshot.forEach((ticket) {
+      ticketsList.add(TicketCard(
+        Ticket(
+          name: ticket.data['name'],
+          eventTicket: ticket.data['eventTicket']
+        )
+      ));
+    });
+
+    return ticketsList;
   }
 
   List<ProfilePlace> buildEvents(List<DocumentSnapshot> eventsListSnapshot){

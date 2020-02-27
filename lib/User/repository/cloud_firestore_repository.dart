@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provelop_app/Ticket/ui/widgets/ticket_card.dart';
 import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/User/ui/widgets/profile_place.dart';
@@ -10,6 +11,7 @@ class CloudFirestoreRepository{
 
 
   List<ProfilePlace> buildEvents(List<DocumentSnapshot> eventsListSnapshot) => _cloudFirestoreAPI.buildEvents(eventsListSnapshot);
+  List<TicketCard> buildTickets(List<DocumentSnapshot> ticketsListSnapshot) => _cloudFirestoreAPI.buildTickets(ticketsListSnapshot);
 
   Future<dynamic> getUser(DocumentReference userRef) => _cloudFirestoreAPI.getUser(userRef);
 

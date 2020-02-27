@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:provelop_app/Ticket/ui/widgets/ticket_card.dart';
 import 'package:provelop_app/User/model/user.dart';
 import 'package:provelop_app/Event/model/event.dart';
 import 'package:provelop_app/User/repository/auth_repository.dart';
@@ -15,6 +16,12 @@ class UserBloc implements Bloc {
   Stream<QuerySnapshot> eventsListStream = Firestore.instance.collection(CloudFirestoreAPI().events).snapshots();
   Stream<QuerySnapshot> get eventsStream => eventsListStream;
   List<ProfilePlace> buildEvents(List<DocumentSnapshot> eventsListSnapshot) => _cloudFirestoreRepository.buildEvents(eventsListSnapshot);
+  List<TicketCard> buildTickets(List<DocumentSnapshot> ticketsListSnapshot) => _cloudFirestoreRepository.buildTickets(ticketsListSnapshot);
+
+  Stream<QuerySnapshot> myTicketsList(String uid) => 
+    Firestore.instance.collection(CloudFirestoreAPI().tickets)
+      .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().users}/${uid}"))
+      .snapshots();
 
   Future<dynamic> getUser(DocumentReference userRef) => _cloudFirestoreRepository.getUser(userRef);
   // Flujo de datos - Stream
