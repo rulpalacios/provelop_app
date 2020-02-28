@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:provelop_app/User/bloc/bloc_user.dart';
+import 'package:provelop_app/User/model/user.dart';
 
 class TicketList extends StatelessWidget {
   UserBloc userBloc;
-  
+  User currentUser;
+
+  TicketList(@required this.currentUser);
+
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of<UserBloc>(context);
@@ -17,7 +21,7 @@ class TicketList extends StatelessWidget {
           bottom: 10.0
       ),
       child: StreamBuilder(
-          stream: userBloc.myTicketsList("AOj0881cvaM9Oo4rXCHe8Bvy2TI3"),
+          stream: userBloc.myTicketsList(currentUser.uid),
           builder: (context, AsyncSnapshot snapshot){
             switch(snapshot.connectionState){
               case ConnectionState.waiting:
@@ -30,7 +34,6 @@ class TicketList extends StatelessWidget {
                 return Column(
                     children: userBloc.buildTickets(snapshot.data.documents)
                 );
-
               case ConnectionState.none:
                 return CircularProgressIndicator();
               default:
