@@ -7,7 +7,7 @@ class TicketList extends StatelessWidget {
   UserBloc userBloc;
   User currentUser;
 
-  TicketList(@required this.currentUser);
+  TicketList(this.currentUser);
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class TicketList extends StatelessWidget {
                 return CircularProgressIndicator();
               default:
                 return Column(
-                    children: userBloc.buildTickets(snapshot.data.documents)
-                );
+                  children: userBloc.buildTickets(snapshot.data.documents)
+              );
             }
           }
       ),
