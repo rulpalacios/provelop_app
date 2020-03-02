@@ -7,6 +7,8 @@ import 'package:provelop_app/User/ui/screens/creator_profile.dart';
 import 'package:provelop_app/widgets/button_purple.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:provelop_app/Ticket/model/ticket.dart';
+import 'package:add_2_calendar/add_2_calendar.dart';
+
 
 class DescriptionPlace extends StatelessWidget {
 //  User ownerUser;
@@ -221,10 +223,12 @@ class DescriptionPlace extends StatelessWidget {
         ),
         openMaps,
         ButtonPurple(buttonText: "Conseguir lugares", onPressed: (){
-          userBloc.updateTicketData(Ticket(
-            name: this.name,
-            userOwnerRef: this.ownerRef
-          ));
+          print("deberia agendar");
+          Add2Calendar.addEvent2Cal(new Event(title: this.name, startDate: new DateTime.now(), endDate: new DateTime.now()));
+//          userBloc.updateTicketData(Ticket(
+//            name: this.name,
+//            userOwnerRef: this.ownerRef
+//          ));
         })
       ],
     );
